@@ -135,7 +135,7 @@ CON : VAR RELOP VAR { printf("%s %s %s",$1,$2,$3); }
 #include"lex.yy.c"
 int main()
 {
-yyin=fopen("inputnew1.txt","r");
+yyin=fopen("input.txt","r");
 printf("Enter the expr");
 yyparse();
 return 0;
