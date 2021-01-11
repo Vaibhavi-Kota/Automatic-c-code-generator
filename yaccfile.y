@@ -10,6 +10,17 @@ char floats[]={'%','f','\0'};
 char chars[]={'%','c','\0'};
 char doubles[]={'%','l','d','\0'};
 char name[100];
+void yyerror (char const *s) {
+   fprintf (stderr, "%s\n", s);
+ }
+int yywrap() {
+   // open next reference or source file and start scanning
+   if((yyin = compiler->getNextFile()) != NULL) {
+      line = 0; // reset line counter for next source file
+      return 0;
+   }
+   return 1;
+}
 void update(char s[20])
 {
 strcpy(sym[i],s);
