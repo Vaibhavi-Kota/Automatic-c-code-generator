@@ -13,14 +13,6 @@ char name[100];
 void yyerror (char const *s) {
    fprintf (stderr, "%s\n", s);
  }
-int yywrap() {
-   // open next reference or source file and start scanning
-   if((yyin = compiler->getNextFile()) != NULL) {
-      line = 0; // reset line counter for next source file
-      return 0;
-   }
-   return 1;
-}
 void update(char s[20])
 {
 strcpy(sym[i],s);
@@ -52,6 +44,7 @@ else if(!strcmp(s,"double"))
 %union{
 char code[100];
 }
+%option noyywrap
 %token BEG END ASSIGN TO PRINT SCAN COMMA OPEN CLOSE IF ENDIF THEN ELSE WHILE ENDWHILE DO RETURN
 %token START_PROCEDURE END_FUNCTION ENDDOWHILE FOR REPEAT ENDFOR FROM READ QUOTE
 %token<code> VAR NUM
